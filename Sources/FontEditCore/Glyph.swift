@@ -23,6 +23,11 @@ public struct Point: Hashable {
     public var x: UInt
     public var y: UInt
     
+    public init(x: UInt, y: UInt) {
+        self.x = x
+        self.y = y
+    }
+
     public func offsetInArray(forGlyphSize size: Size) -> UInt {
         return FECPointOffset(fecPoint, size.fecSize)
     }
