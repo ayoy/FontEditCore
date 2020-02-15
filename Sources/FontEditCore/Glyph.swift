@@ -28,11 +28,11 @@ public struct Point: Hashable {
     }
 }
 
-public class Glyph {
+open class Glyph {
 
-    public var size: Size
+    open var size: Size
 
-    public var pixels: [Bool] {
+    open var pixels: [Bool] {
         return fecGlyph.pixels.map { $0.boolValue }
     }
     
@@ -42,11 +42,11 @@ public class Glyph {
         fecGlyph = FECGlyph(size: size.fecSize, pixels: pixelNumbers)
     }
     
-    public func isPixelSet(_ point: Point) -> Bool {
+    open func isPixelSet(_ point: Point) -> Bool {
         return fecGlyph.isPixelSet(point.fecPoint)
     }
     
-    public func setPixelSet(_ point: Point) {
+    open func setPixelSet(_ point: Point) {
         fecGlyph.setPixelSet(point.fecPoint)
     }
     
