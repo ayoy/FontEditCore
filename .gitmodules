@@ -1,0 +1,4 @@
+[submodule "cpp"]
+	path = cpp
+	url = http://github.com/ayoy/fontedit
+	branch = develop
