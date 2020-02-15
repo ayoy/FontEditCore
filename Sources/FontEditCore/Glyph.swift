@@ -19,7 +19,7 @@ public struct Size: Hashable {
     }
 }
 
-public struct Point: Hashable {
+public struct Point: Hashable, Comparable {
     public var x: UInt
     public var y: UInt
     
@@ -31,6 +31,17 @@ public struct Point: Hashable {
     public func offsetInArray(forGlyphSize size: Size) -> UInt {
         return FECPointOffset(fecPoint, size.fecSize)
     }
+
+    public static func < (lhs: Point, rhs: Point) -> Bool {
+        if lhs.y == rhs.y {
+            return lhs.x < rhs.x
+        }
+        return lhs.y < rhs.y
+    }
+}
+
+enum GlyphError: Error {
+    case pixelsArrayTooSmall
 }
 
 open class Glyph {
@@ -41,8 +52,17 @@ open class Glyph {
         return fecGlyph.pixels.map { $0.boolValue }
     }
     
-    public init(size: Size, pixels: [Bool] = []) {
+    public init(size: Size) {
         self.size = size
+        fecGlyph = FECGlyph(size: size.fecSize)
+    }
+    
+    public init(size: Size, pixels: [Bool]) throws {
+        self.size = size
+
+        if pixels.count < Int(size.width * size.height) {
+            throw GlyphError.pixelsArrayTooSmall
+        }
         let pixelNumbers = pixels.map { NSNumber(value: $0) }
         fecGlyph = FECGlyph(size: size.fecSize, pixels: pixelNumbers)
     }

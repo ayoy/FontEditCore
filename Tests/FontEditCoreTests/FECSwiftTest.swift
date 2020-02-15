@@ -49,7 +49,7 @@ class FECSwiftTest: XCTestCase {
         let glyph = face.glyph(at: 2)!
         XCTAssertEqual(glyph.size.height, testData.fontSize.height);
         XCTAssertEqual(glyph.size.width, testData.fontSize.width);
-
+        
         XCTAssertEqual(Glyph(size: Size(width: 5, height: 5)).size, Size(width: 5, height: 5))
     }
 
