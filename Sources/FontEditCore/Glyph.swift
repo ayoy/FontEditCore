@@ -71,8 +71,8 @@ open class Glyph {
         return fecGlyph.isPixelSet(point.fecPoint)
     }
     
-    open func setPixelSet(_ point: Point) {
-        fecGlyph.setPixelSet(point.fecPoint)
+    open func setPixelSet(_ point: Point, with value: Bool) {
+        fecGlyph.setPixelSet(point.fecPoint, value: value)
     }
     
     init(fecGlyph: FECGlyph) {

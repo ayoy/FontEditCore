@@ -47,7 +47,7 @@ FECPointOffset(struct FECPoint p, struct FECSize sz)
 - (instancetype)initWithSize:(FECSize)size pixels:(nullable NSArray<NSNumber *> *)pixels;
 
 - (BOOL)isPixelSet:(FECPoint)point;
-- (void)setPixelSet:(FECPoint)point;
+- (void)setPixelSet:(FECPoint)point value:(BOOL)value;
 
 @property (nonatomic, assign) FECSize size;
 @property (nonatomic, readonly) NSArray<NSNumber *> *pixels;

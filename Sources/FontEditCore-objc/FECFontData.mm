@@ -70,9 +70,9 @@
     return _object->is_pixel_set({ point.x, point.y });
 }
 
-- (void)setPixelSet:(FECPoint)point
+- (void)setPixelSet:(FECPoint)point value:(BOOL)value
 {
-    _object->set_pixel_set({ point.x, point.y }, true);
+    _object->set_pixel_set({ point.x, point.y }, value);
 }
 
 - (FECSize)size
