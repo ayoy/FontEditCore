@@ -33,7 +33,7 @@ typedef NS_ENUM(NSUInteger, FECBitNumbering) {
 
 - (NSString *)generateCodeForFace:(FECFace *)face;
 
-@property (nonatomic, strong, readonly) NSString *formatIdentifier;
+@property (nonatomic, copy, readonly) NSString *formatIdentifier;
 @end
 
 NS_ASSUME_NONNULL_END

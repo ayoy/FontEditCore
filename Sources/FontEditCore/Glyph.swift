@@ -46,7 +46,7 @@ enum GlyphError: Error {
 
 open class Glyph {
 
-    open var size: Size
+    public let size: Size
 
     open var pixels: [Bool] {
         return fecGlyph.pixels.map { $0.boolValue }

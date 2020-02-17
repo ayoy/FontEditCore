@@ -49,8 +49,8 @@ FECPointOffset(struct FECPoint p, struct FECSize sz)
 - (BOOL)isPixelSet:(FECPoint)point;
 - (void)setPixelSet:(FECPoint)point value:(BOOL)value;
 
-@property (nonatomic, assign) FECSize size;
-@property (nonatomic, readonly) NSArray<NSNumber *> *pixels;
+@property (nonatomic, assign, readonly) FECSize size;
+@property (nonatomic, copy, readonly) NSArray<NSNumber *> *pixels;
 @end
 
 
@@ -75,7 +75,7 @@ FECPointOffset(struct FECPoint p, struct FECSize sz)
 
 @property (nonatomic, assign, readonly) FECSize glyphSize;
 @property (nonatomic, assign, readonly) NSUInteger numberOfGlyphs;
-@property (nonatomic, strong, readonly) NSArray<FECGlyph *> *glyphs;
+@property (nonatomic, copy, readonly) NSArray<FECGlyph *> *glyphs;
 @end
 
 NS_ASSUME_NONNULL_END
