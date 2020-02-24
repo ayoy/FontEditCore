@@ -19,6 +19,7 @@ public struct Size: Hashable {
     }
 }
 
+
 public struct Point: Hashable, Comparable {
     public var x: UInt
     public var y: UInt
@@ -39,6 +40,18 @@ public struct Point: Hashable, Comparable {
         return lhs.y < rhs.y
     }
 }
+
+
+public struct Margins: Hashable {
+    public var top: UInt
+    public var bottom: UInt
+    
+    public init(top: UInt, bottom: UInt) {
+        self.top = top
+        self.bottom = bottom
+    }
+}
+
 
 enum GlyphError: Error {
     case pixelsArrayTooSmall
@@ -75,6 +88,14 @@ open class Glyph {
         fecGlyph.setPixelSet(point.fecPoint, value: value)
     }
     
+    open var topMargin: UInt {
+        return fecGlyph.topMargin()
+    }
+    
+    open var bottomMargin: UInt {
+        return fecGlyph.bottomMargin()
+    }
+    
     init(fecGlyph: FECGlyph) {
         self.size = fecGlyph.size.size
         self.fecGlyph = fecGlyph
@@ -82,6 +103,7 @@ open class Glyph {
 
     let fecGlyph: FECGlyph
 }
+
 
 extension Size {
     var fecSize: FECSize {
@@ -104,5 +126,17 @@ extension Point {
 extension FECPoint {
     var point: Point {
         return Point(x: x, y: y)
+    }
+}
+
+extension Margins {
+    var fecMargins: FECMargins {
+        return FECMarginsMake(top, bottom)
+    }
+}
+
+extension FECMargins {
+    var margins: Margins {
+        return Margins(top: top, bottom: bottom)
     }
 }

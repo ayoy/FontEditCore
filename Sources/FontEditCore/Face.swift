@@ -16,6 +16,7 @@ public protocol FaceReader {
     var numberOfGlyphs: UInt { get }
 }
 
+
 public class Face {
     
     public init(faceReader: FaceReader) {
@@ -28,6 +29,10 @@ public class Face {
     
     public func setGlyph(_ glyph: Glyph, at index: UInt) {
         fecFace.setGlyph(glyph.fecGlyph, at: index)
+    }
+    
+    public func calculateMargins() -> Margins {
+        return fecFace.calculateMargins().margins
     }
     
     public var glyphSize: Size {

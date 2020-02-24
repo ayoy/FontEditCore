@@ -22,6 +22,7 @@ FECSizeMake(NSUInteger width, NSUInteger height)
     FECSize sz; sz.width = width; sz.height = height; return sz;
 }
 
+
 struct FECPoint {
     NSUInteger x;
     NSUInteger y;
@@ -41,6 +42,19 @@ FECPointOffset(struct FECPoint p, struct FECSize sz)
 }
 
 
+struct FECMargins {
+    NSUInteger top;
+    NSUInteger bottom;
+};
+typedef struct __attribute__((objc_boxable)) FECMargins FECMargins;
+
+static inline FECMargins
+FECMarginsMake(NSUInteger top, NSUInteger bottom)
+{
+    FECMargins m; m.top = top; m.bottom = bottom; return m;
+}
+
+
 @interface FECGlyph : NSObject
 
 - (instancetype)initWithSize:(FECSize)size;
@@ -48,6 +62,9 @@ FECPointOffset(struct FECPoint p, struct FECSize sz)
 
 - (BOOL)isPixelSet:(FECPoint)point;
 - (void)setPixelSet:(FECPoint)point value:(BOOL)value;
+
+- (NSUInteger)topMargin;
+- (NSUInteger)bottomMargin;
 
 @property (nonatomic, assign, readonly) FECSize size;
 @property (nonatomic, copy, readonly) NSArray<NSNumber *> *pixels;
@@ -72,6 +89,8 @@ FECPointOffset(struct FECPoint p, struct FECSize sz)
 
 - (FECGlyph *)objectAtIndexedSubscript:(NSUInteger)index;
 - (void)setObject:(FECGlyph *)newValue atIndexedSubscript:(NSUInteger)index;
+
+- (FECMargins)calculateMargins;
 
 @property (nonatomic, assign, readonly) FECSize glyphSize;
 @property (nonatomic, assign, readonly) NSUInteger numberOfGlyphs;

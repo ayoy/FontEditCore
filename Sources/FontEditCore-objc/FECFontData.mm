@@ -75,6 +75,16 @@
     _object->set_pixel_set({ point.x, point.y }, value);
 }
 
+- (NSUInteger)topMargin
+{
+    return _object->top_margin();
+}
+
+- (NSUInteger)bottomMargin
+{
+    return _object->bottom_margin();
+}
+
 - (FECSize)size
 {
     Font::Size sz = _object->size();
@@ -150,6 +160,12 @@ private:
 - (void)setObject:(FECGlyph *)newValue atIndexedSubscript:(NSUInteger)index
 {
     [self setGlyph:newValue atIndex:index];
+}
+
+- (FECMargins)calculateMargins
+{
+    Font::Margins m = _object->calculate_margins();
+    return FECMarginsMake(m.top, m.bottom);
 }
 
 - (FECSize)glyphSize
